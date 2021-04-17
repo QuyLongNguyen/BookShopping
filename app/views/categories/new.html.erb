@@ -1,0 +1,11 @@
+<% if user_signed_in? && current_user.admin == true %>
+<h1>New Category</h1>
+
+<%= render 'form', category: @category %>
+
+<%= link_to 'Back', categories_path %>
+<% else %>
+<script type="text/javascript">
+   window.location.href="/categories"  // put your correct path in a string here
+ </script>
+ <% end %>

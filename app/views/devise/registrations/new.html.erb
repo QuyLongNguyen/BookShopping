@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Book Starter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<div class="header">
+    <div class="container">
+        <div class="navbar">
+            <div class="logo" >
+                <%= image_tag("logo.png", :size => "150x80")%>
+            </div>
+            <nav>
+                <ul>
+                    <li><%= link_to "Trang chủ",root_path %></li>
+                    <li><%= link_to "Sách",books_path %></li>
+                    <li><%= link_to "Thể loại",categories_path %></li>
+                    <li><a href="">Giới thiệu</a></li>
+                    <li><a href="">Liên hệ</a></li>
+                    <li><a href="">Tài khoản</a>
+                        <ul>
+                            <% if user_signed_in? %>
+                            <li><%= link_to "Thay đổi",edit_user_registration_path%></li>
+                            <li><%= link_to "Đăng xuất",destroy_user_session_path,method: :delete%></li>
+                            <% else %>
+                            <li><%= link_to "Đăng nhập",new_user_session_path %></li>
+                            <li><%= link_to "Đăng ký",new_user_registration_path%></li>
+
+                            <% end %>
+
+                        </ul>
+                </ul>
+        </div>
+
+
+        <div class="row">
+<div class="rails-form">
+            <div class="col-2">
+
+
+
+                <h2>Đăng ký tài khoản</h2>
+                <br>
+                <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                  <%= render "devise/shared/error_messages", resource: resource %>
+
+                  <div class="field">
+                    <%= f.label :Email %><br />
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                  </div>
+
+
+                    <div class="field">
+                      <%= f.label :Tên %><br />
+                      <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+                    </div>
+
+                  <div class="field">
+                    <%= f.label :Mật_khẩu %>
+                    <% if @minimum_password_length %>
+                    <em>(Tối thiểu <%= @minimum_password_length %> ký tự)</em>
+                    <% end %><br />
+                    <%= f.password_field :password, autocomplete: "new-password" %>
+                  </div>
+
+                  <div class="field">
+                    <%= f.label :Xác_nhận_mật_khẩu %><br />
+                    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+                  </div>
+
+                  <div class="actions">
+                    <%= f.submit "Đăng ký" , :class => "rails-button" %>
+                  </div>
+                <% end %>
+
+                <%= render "devise/shared/links" %>
+
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--- footer --->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="footer-col-1">
+                <h3>Download ứng dụng</h3>
+
+                <div class="app-logo">
+                    <%= image_tag("app-store.png") %><br>
+                    <%= image_tag("play-store.png") %>
+                </div>
+            </div>
+            <div class="footer-col-3">
+                <h3>Giới thiệu</h3>
+                <ul>
+                    <li>Hướng dẫn mua hàng</li>
+                    <li>Chính sách giao hàng</li>
+                    <li>Phương thức vận chuyển</li>
+                    <li>Phương thức đổi/trả</li>
+                </ul>
+            </div>
+            <div class="footer-col-2">
+                <%= image_tag("white_logo.png") %>
+                <p>Biến thói quen đọc sách <br> trở thành niềm vui</p>
+            </div>
+
+            <div class="footer-col-3">
+                <h3>Link liên quan</h3>
+                <ul>
+                    <li>Mã giảm giá</li>
+                    <li>Blog </li>
+                    <li>Chính sách riêng tư</li>
+
+                </ul>
+            </div>
+
+            <div class="footer-col-4">
+                <h3>Theo dõi chúng tôi</h3>
+                <ul>
+                    <li>Facebook</li>
+                    <li>Twitter</li>
+                    <li>Youtube</li>
+
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <p>Copyright 2020 - Long </p>
+    </div>
+</div>
+</body>
+</html>
